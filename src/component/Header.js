@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 
-const Header = ({ handleSearch, title, setTitle }) => {
+const Header = ({ handleSearch, title, token, setUser }) => {
   let location = useLocation();
   console.log(location.pathname);
   return (
@@ -33,14 +33,20 @@ const Header = ({ handleSearch, title, setTitle }) => {
           // setTitle("")
         }
 
-        <div>
-          <Link to="/signup">
-            <button>S'inscire</button>
-          </Link>
-          <Link>
-            <button>Se connecter</button>
-          </Link>
-        </div>
+        {token ? (
+          <button className="blanc" onClick={() => setUser(null)}>
+            Se déconnecter
+          </button>
+        ) : (
+          <div>
+            <Link to="/signup">
+              <button>S'inscire</button>
+            </Link>
+            <Link to="/login">
+              <button>Se connecter</button>
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );

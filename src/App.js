@@ -1,4 +1,5 @@
 import "./App.css";
+import Cookies from "js-cookie";
 // Import des hooks
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
@@ -9,13 +10,30 @@ import Characters from "./container/Characters";
 import Header from "./component/Header";
 import CharDetails from "./container/CharDetails";
 import SignUp from "./container/SignUp";
+import Login from "./container/Login";
 
 function App() {
+  const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
   const [searchBar, setSearchBar] = useState(false);
   const [title, setTitle] = useState("");
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(100);
   const [page, setPage] = useState(1);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const setUser = (token) => {
+    if (token) {
+      Cookies.set("userToken", token, { expires: 1 });
+      setUserToken(token);
+    } else {
+      Cookies.remove("userToken");
+      setUserToken(null);
+    }
+  };
+
+  const setError = (e) => {
+    setErrorMessage(e);
+  };
 
   const handleSearchBar = () => {
     setSearchBar(true);
@@ -28,10 +46,26 @@ function App() {
 
   return (
     <Router>
-      <Header handleSearch={handleSearch} title={title} />
+      <Header
+        handleSearch={handleSearch}
+        title={title}
+        token={userToken}
+        setUser={setUser}
+      />
       <Switch>
         <Route path="/signup">
-          <SignUp />
+          <SignUp
+            setUser={setUser}
+            setError={setError}
+            errorMessage={errorMessage}
+          />
+        </Route>
+        <Route path="/login">
+          <Login
+            setUser={setUser}
+            setError={setError}
+            errorMessage={errorMessage}
+          />
         </Route>
         <Route path="/comics/:characterId">
           <CharDetails />
