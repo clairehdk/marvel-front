@@ -1,9 +1,9 @@
 import React from "react";
 
-const Limit = ({ setLimit, count }) => {
+const Limit = ({ setLimit }) => {
   const handleLimit = (button) => {
-    if (button === "10") {
-      setLimit(10);
+    if (button === "15") {
+      setLimit(15);
     } else if (button === "50") {
       setLimit(50);
     } else if (button === "100") {
@@ -15,10 +15,10 @@ const Limit = ({ setLimit, count }) => {
       <span>Afficher par : </span>
       <button
         onClick={() => {
-          handleLimit("10");
+          handleLimit("15");
         }}
       >
-        10
+        15
       </button>
       <button
         onClick={() => {

@@ -8,13 +8,14 @@ import Comics from "./container/Comics";
 import Characters from "./container/Characters";
 import Header from "./component/Header";
 import CharDetails from "./container/CharDetails";
+import SignUp from "./container/SignUp";
 
 function App() {
-  const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [title, setTitle] = useState("");
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(100);
+  const [page, setPage] = useState(1);
 
   const handleSearchBar = () => {
     setSearchBar(true);
@@ -22,12 +23,16 @@ function App() {
   const handleSearch = (event) => {
     const value = event.target.value;
     setTitle(value);
+    // setPage(1);
   };
 
   return (
     <Router>
       <Header handleSearch={handleSearch} title={title} />
       <Switch>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
         <Route path="/comics/:characterId">
           <CharDetails />
         </Route>
@@ -38,6 +43,9 @@ function App() {
             skip={skip}
             limit={limit}
             setLimit={setLimit}
+            setSkip={setSkip}
+            page={page}
+            setPage={setPage}
           />
         </Route>
         <Route path="/characters">
@@ -47,10 +55,13 @@ function App() {
             limit={limit}
             skip={skip}
             setLimit={setLimit}
+            setSkip={setSkip}
+            page={page}
+            setPage={setPage}
           />
         </Route>
         <Route path="/">
-          <Home />
+          <Home setTitle={setTitle} />
         </Route>
       </Switch>
     </Router>

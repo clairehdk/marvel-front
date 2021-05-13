@@ -19,13 +19,28 @@ button {
   cursor: pointer;
   border: none;
   padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
 }
+
 input {
   outline: none;
   border: none;
   border-radius: 5px;
   padding-left: 20px;
   background-color: transparent;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* LOADER  */
+
+.loader {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* HEADER  */
 
@@ -99,6 +114,27 @@ input {
   border-bottom: 3px solid #333333;
 }
 
+/* CONTAINER  */
+
+.limit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Pagination */
+
+/* .pages {
+  margin-bottom: 20px;
+} */
+
+.pages button {
+  margin-right: 15px;
+  /* background-color: #242424;
+  color: white; */
+  font-size: 14px;
+}
+
 /* HOME PAGE */
 
 .home_page {
@@ -152,21 +188,41 @@ input {
 /* COMICS */
 
 .comics {
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
 }
 .comics .item {
+  height: 400px;
   display: flex;
   flex-direction: column;
-  width: calc((100% / 4) - (60px / 3));
+  width: calc((100% / 5) - 15px);
+  margin-bottom: 15px;
+  margin-right: 15px;
+  background-color: white;
+  padding: 5px;
+  opacity: 0.8;
+  overflow: hidden;
 }
-.comics .item {
-  margin-right: 20px;
+
+.comics .item:hover {
+  opacity: 1;
 }
 .item img {
-  width: 325px;
-  height: 478px;
-  object-fit: cover;
+  width: 100%;
+  height: 300px;
+  /* object-fit: cover; */
+}
+.comics .item:nth-child(5n) {
+  margin: 0;
+}
+.item h2 {
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.item p {
+  text-overflow: ellipsis;
 }
 
 /* Count */

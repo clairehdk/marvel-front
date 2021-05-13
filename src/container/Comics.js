@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Comic from "../component/Comic";
 import Limit from "../component/Limit";
+import Loader from "../component/Loader";
+import Pagination from "../component/Pagination";
 
-const Comics = ({ title, skip, limit, setLimit }) => {
+const Comics = ({ title, skip, limit, setLimit, setSkip, page, setPage }) => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
   useEffect(() => {
@@ -23,10 +25,19 @@ const Comics = ({ title, skip, limit, setLimit }) => {
     fetchData();
   }, [title, limit, skip]);
   return isLoading ? (
-    <span>En cours de chargement</span>
+    <Loader />
   ) : (
     <div className="container">
-      <Limit count={data.count} setLimit={setLimit} />
+      <div className="limit">
+        <Pagination
+          limit={limit}
+          setSkip={setSkip}
+          count={data.count}
+          page={page}
+          setPage={setPage}
+        />
+        <Limit count={data.count} setLimit={setLimit} />
+      </div>
       <div className="comics">
         {data.results.map((comic) => {
           return <Comic key={comic._id} comic={comic} />;

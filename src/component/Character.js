@@ -9,6 +9,7 @@ const Character = ({ character }) => {
           src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
           alt={character.name}
         />
+        <hr></hr>
         <h2>{character.name}</h2>
         <p>{character.description}</p>
       </Link>
