@@ -11,28 +11,39 @@ import Header from "./component/Header";
 import CharDetails from "./container/CharDetails";
 import SignUp from "./container/SignUp";
 import Login from "./container/Login";
+import Favorites from "./container/Favorites";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+  const [userId, setUserId] = useState(Cookies.get("userId") || null);
   const [searchBar, setSearchBar] = useState(false);
   const [title, setTitle] = useState("");
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(100);
   const [page, setPage] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
+  const [viewPass, setViewPass] = useState(false);
 
-  const setUser = (token) => {
+  const setUser = (token, userId) => {
     if (token) {
-      Cookies.set("userToken", token, { expires: 1 });
+      Cookies.set("userToken", token, { expires: 10 });
+      Cookies.set("userId", userId, { expires: 10 });
       setUserToken(token);
+      setUserId(userId);
     } else {
       Cookies.remove("userToken");
+      Cookies.remove("userId");
+      setUserId(null);
       setUserToken(null);
     }
   };
 
+  const handleViewPass = () => {
+    setViewPass(!viewPass);
+  };
+
   const setError = (e) => {
-    setErrorMessage(e);
+    setErrorMessage(e.response.data);
   };
 
   const handleSearchBar = () => {
@@ -40,8 +51,10 @@ function App() {
   };
   const handleSearch = (event) => {
     const value = event.target.value;
+    // Peut-être setPage(1) si ça fou la merde
+    setPage(1);
+    setSkip(0);
     setTitle(value);
-    // setPage(1);
   };
 
   return (
@@ -53,11 +66,16 @@ function App() {
         setUser={setUser}
       />
       <Switch>
+        <Route path="/user/favorites">
+          <Favorites userId={userId} userToken={userToken} />
+        </Route>
         <Route path="/signup">
           <SignUp
             setUser={setUser}
             setError={setError}
             errorMessage={errorMessage}
+            handleViewPass={handleViewPass}
+            viewPass={viewPass}
           />
         </Route>
         <Route path="/login">
@@ -65,6 +83,8 @@ function App() {
             setUser={setUser}
             setError={setError}
             errorMessage={errorMessage}
+            handleViewPass={handleViewPass}
+            viewPass={viewPass}
           />
         </Route>
         <Route path="/comics/:characterId">
@@ -92,10 +112,11 @@ function App() {
             setSkip={setSkip}
             page={page}
             setPage={setPage}
+            userToken={userToken}
           />
         </Route>
         <Route path="/">
-          <Home setTitle={setTitle} />
+          <Home setTitle={setTitle} token={userToken} />
         </Route>
       </Switch>
     </Router>

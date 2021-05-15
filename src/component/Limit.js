@@ -2,34 +2,35 @@ import React from "react";
 
 const Limit = ({ setLimit }) => {
   const handleLimit = (button) => {
-    if (button === "15") {
-      setLimit(15);
-    } else if (button === "50") {
-      setLimit(50);
-    } else if (button === "100") {
-      setLimit(100);
-    }
+    setLimit(button);
+    // if (button === "15") {
+    //   setLimit(15);
+    // } else if (button === "50") {
+    //   setLimit(50);
+    // } else if (button === "100") {
+    //   setLimit(100);
+    // }
   };
   return (
     <div className="count">
       <span>Afficher par : </span>
       <button
         onClick={() => {
-          handleLimit("15");
+          handleLimit(15);
         }}
       >
         15
       </button>
       <button
         onClick={() => {
-          handleLimit("50");
+          handleLimit(50);
         }}
       >
         50
       </button>
       <button
         onClick={() => {
-          handleLimit("100");
+          handleLimit(100);
         }}
       >
         100

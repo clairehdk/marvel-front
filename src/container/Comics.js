@@ -31,6 +31,7 @@ const Comics = ({ title, skip, limit, setLimit, setSkip, page, setPage }) => {
       <div className="limit">
         <Pagination
           limit={limit}
+          skip={skip}
           setSkip={setSkip}
           count={data.count}
           page={page}

@@ -2,7 +2,13 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const Login = ({ setError, errorMessage, setUser }) => {
+const Login = ({
+  setError,
+  errorMessage,
+  setUser,
+  handleViewPass,
+  viewPass,
+}) => {
   let history = useHistory();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -17,10 +23,11 @@ const Login = ({ setError, errorMessage, setUser }) => {
       const response = await axios.post("http://localhost:3001/login", data);
       console.log(response.data);
       const token = response.data.token;
-      setUser(token);
+      const userId = response.data._id;
+      setUser(token, userId);
       history.push("/");
-    } catch (event) {
-      setError(event.message);
+    } catch (e) {
+      setError(e);
     }
   };
 
@@ -34,8 +41,8 @@ const Login = ({ setError, errorMessage, setUser }) => {
   };
 
   return (
-    <div>
-      {errorMessage && errorMessage}
+    <div className="form">
+      <span>{errorMessage && errorMessage}</span>
       <form>
         <input
           name="email"
@@ -47,17 +54,17 @@ const Login = ({ setError, errorMessage, setUser }) => {
           <input
             name="password"
             className="pass"
-            // type={view ? "text" : "password"}
+            type={viewPass ? "text" : "password"}
             placeholder="Mot de passe"
             onChange={handlePass}
           />
-          <i class="fas fa-eye"></i>
+          <i onClick={handleViewPass} className="fas fa-eye"></i>
         </div>
         <input
           onClick={handleSubmit}
           className="bleu"
           type="submit"
-          value="S'inscrire"
+          value="Se connecter"
         />
       </form>
     </div>

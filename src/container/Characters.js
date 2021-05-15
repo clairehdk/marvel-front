@@ -13,6 +13,7 @@ const Characters = ({
   setSkip,
   page,
   setPage,
+  userToken,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
@@ -48,7 +49,13 @@ const Characters = ({
       </div>
       <div className="comics">
         {data.results.map((character) => {
-          return <Character key={character._id} character={character} />;
+          return (
+            <Character
+              key={character._id}
+              character={character}
+              userToken={userToken}
+            />
+          );
         })}
       </div>
     </div>

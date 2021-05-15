@@ -34,9 +34,15 @@ const Header = ({ handleSearch, title, token, setUser }) => {
         }
 
         {token ? (
-          <button className="blanc" onClick={() => setUser(null)}>
-            Se déconnecter
-          </button>
+          <div>
+            <Link to="user/favorites">
+              <button>Mes favoris</button>
+            </Link>
+
+            <button className="blanc" onClick={() => setUser(null)}>
+              Se déconnecter
+            </button>
+          </div>
         ) : (
           <div>
             <Link to="/signup">
