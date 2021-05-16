@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
 const Character = ({ character, userToken, favorites }) => {
-  const [isLoading, setLoader] = useState(true);
   const [isFav, setIsFav] = useState(false);
-  let isAlreadyFavorite = [];
+
+  let isAlreadyFavorite =
+    favorites && favorites.length > 0
+      ? favorites.filter((fav) => fav.marvelId === character._id)
+      : [];
 
   useEffect(() => {
     if (favorites) {
@@ -43,7 +46,6 @@ const Character = ({ character, userToken, favorites }) => {
           }
         );
         console.log(response.data);
-        setLoader(false);
         setIsFav(true);
       } else {
         console.dir("ERROR", "Already in database");

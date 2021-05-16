@@ -3,10 +3,16 @@ import logo from "../assets/img/logo.png";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
-  let location = useLocation();
-  useEffect(() => {
-    console.log("Hello");
-  }, [location]);
+  const usePageViews = () => {
+    let location = useLocation();
+    useEffect(() => {
+      console.log("Hello");
+    }, [location]);
+  };
+  // let location = useLocation();
+  // useEffect(() => {
+  //   console.log("Hello");
+  // }, []);
   return (
     <header>
       <div className="container">
@@ -14,22 +20,20 @@ const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
           <img src={logo} alt="logo"></img>
         </Link>
         {
-          (location.pathname === "/comics" ||
-            location.pathname === "/characters") && (
-            <div className="search">
-              <div className="input-wrapper">
-                <i className="fas fa-search fa-lg"></i>
-                <input
-                  placeholder="Ex : Spider-man..."
-                  onChange={handleSearch}
-                  spellCheck={false}
-                />
-                <span className="input-highlight">
-                  {title.replace("\u00a0")}
-                </span>
-              </div>
+          // (location.pathname === "/comics" ||
+          // location.pathname === "/characters") && (
+          <div className="search">
+            <div className="input-wrapper">
+              <i className="fas fa-search fa-lg"></i>
+              <input
+                placeholder="Ex : Spider-man..."
+                onChange={handleSearch}
+                spellCheck={false}
+              />
+              <span className="input-highlight">{title.replace("\u00a0")}</span>
             </div>
-          )
+          </div>
+          // )
           // setTitle("")
         }
 
