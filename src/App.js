@@ -31,7 +31,7 @@ function App() {
   const [isLoading, setLoader] = useState(true);
 
   useEffect(() => {
-    const fecthData = async () => {
+    const fetchData = async () => {
       try {
         const data = { userId };
         const response = await axios.post(
@@ -50,7 +50,7 @@ function App() {
         console.log(e);
       }
     };
-    fecthData();
+    fetchData();
   }, []);
   const setUser = (token, userId) => {
     if (token) {

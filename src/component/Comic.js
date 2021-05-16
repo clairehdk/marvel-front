@@ -7,6 +7,10 @@ import Loader from "./Loader";
 const Comic = ({ comic, userToken, favorites }) => {
   const [isFav, setIsFav] = useState(false);
 
+  let isAlreadyFavorite = favorites
+    ? favorites.filter((fav) => fav.marvelId === comic._id)
+    : [];
+
   useEffect(() => {
     if (isAlreadyFavorite && isAlreadyFavorite.length === 0) {
       setIsFav(false);
@@ -14,8 +18,6 @@ const Comic = ({ comic, userToken, favorites }) => {
       setIsFav(true);
     }
   }, []);
-
-  let isAlreadyFavorite = favorites.filter((fav) => fav.marvelId === comic._id);
 
   const addFav = async (event) => {
     event.preventDefault();
