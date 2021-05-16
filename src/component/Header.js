@@ -3,7 +3,7 @@ import logo from "../assets/img/logo.png";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
-  let location = useLocation();
+  const location = useLocation();
   useEffect(() => {
     setTitle("");
   }, [location]);
