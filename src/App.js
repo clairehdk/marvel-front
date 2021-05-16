@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 // Import des hooks
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useEffect } from "react";
 import { useState } from "react";
 // Import des composants / containers
 import Home from "./container/Home";
@@ -26,8 +27,32 @@ function App() {
   const [page, setPage] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [viewPass, setViewPass] = useState(false);
+  const [favorites, setFavorites] = useState({});
+  const [isLoading, setLoader] = useState(true);
   // const [, set] = useState(false);
 
+  useEffect(() => {
+    const fecthData = async () => {
+      try {
+        const data = { userId };
+        const response = await axios.post(
+          "http://localhost:3001/user/favs",
+          data,
+          {
+            headers: {
+              authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        setFavorites(response.data);
+        setLoader(false);
+        console.log(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fecthData();
+  }, []);
   const setUser = (token, userId) => {
     if (token) {
       Cookies.set("userToken", token, { expires: 10 });
@@ -108,6 +133,7 @@ function App() {
             page={page}
             setPage={setPage}
             userToken={userToken}
+            favorites={favorites}
           />
         </Route>
         <Route path="/characters">
@@ -122,6 +148,7 @@ function App() {
             setPage={setPage}
             userToken={userToken}
             userId={userId}
+            favorites={favorites}
           />
         </Route>
         <Route path="/">

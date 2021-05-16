@@ -4,29 +4,38 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
-const Comic = ({ comic, userToken }) => {
+const Comic = ({ comic, userToken, favorites }) => {
   const [isLoading, setLoader] = useState(true);
   const [isFav, setIsFav] = useState(false);
 
   const addFav = async (event) => {
     try {
-      event.preventDefault();
-      const data = {
-        marvelId: comic._id,
-        title: comic.title,
-        thumbnail: {
-          path: comic.thumbnail.path,
-          extension: comic.thumbnail.extension,
-        },
-      };
-      const response = await axios.post(`http://localhost:3001/fav/add`, data, {
-        headers: {
-          authorization: `Bearer ${userToken}`,
-        },
-      });
-      console.log(response.data);
-      setLoader(false);
-      setIsFav(true);
+      if (favorites.marvelId !== comic._id) {
+        event.preventDefault();
+        const data = {
+          marvelId: comic._id,
+          title: comic.title,
+          thumbnail: {
+            path: comic.thumbnail.path,
+            extension: comic.thumbnail.extension,
+          },
+        };
+        const response = await axios.post(
+          `http://localhost:3001/fav/add`,
+          data,
+          {
+            headers: {
+              authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setLoader(false);
+        setIsFav(true);
+        // setIsFavPresent = !!fav[data._id];
+      } else {
+        console.log("Fav déjà présent en BDD");
+      }
     } catch (error) {
       console.log(error.message);
     }

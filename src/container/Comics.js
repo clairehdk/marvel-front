@@ -15,6 +15,7 @@ const Comics = ({
   page,
   setPage,
   userToken,
+  favorites,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
@@ -50,7 +51,14 @@ const Comics = ({
       </div>
       <div className="comics">
         {data.results.map((comic) => {
-          return <Comic key={comic._id} comic={comic} userToken={userToken} />;
+          return (
+            <Comic
+              key={comic._id}
+              comic={comic}
+              userToken={userToken}
+              favorites={favorites}
+            />
+          );
         })}
       </div>
     </div>
