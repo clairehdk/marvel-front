@@ -9,10 +9,10 @@ const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
   //     console.log("Hello");
   //   }, [location]);
   // };
-  // let location = useLocation();
-  // useEffect(() => {
-  //   console.log("Hello");
-  // }, []);
+  let location = useLocation();
+  useEffect(() => {
+    setTitle("");
+  }, [location]);
   // usePageViews();
   return (
     <header>
@@ -21,20 +21,22 @@ const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
           <img src={logo} alt="logo"></img>
         </Link>
         {
-          // (location.pathname === "/comics" ||
-          // location.pathname === "/characters") && (
-          <div className="search">
-            <div className="input-wrapper">
-              <i className="fas fa-search fa-lg"></i>
-              <input
-                placeholder="Ex : Spider-man..."
-                onChange={handleSearch}
-                spellCheck={false}
-              />
-              <span className="input-highlight">{title.replace("\u00a0")}</span>
+          (location.pathname === "/comics" ||
+            location.pathname === "/characters") && (
+            <div className="search">
+              <div className="input-wrapper">
+                <i className="fas fa-search fa-lg"></i>
+                <input
+                  placeholder="Ex : Spider-man..."
+                  onChange={handleSearch}
+                  spellCheck={false}
+                />
+                <span className="input-highlight">
+                  {title.replace("\u00a0")}
+                </span>
+              </div>
             </div>
-          </div>
-          // )
+          )
           // setTitle("")
         }
 
