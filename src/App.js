@@ -5,6 +5,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 // Import des composants / containers
 import Home from "./container/Home";
 import Comics from "./container/Comics";
@@ -29,7 +30,7 @@ function App() {
   const [viewPass, setViewPass] = useState(false);
   const [favorites, setFavorites] = useState({});
   const [isLoading, setLoader] = useState(true);
-  // const [, set] = useState(false);
+  const [location, setLocation] = useState();
 
   useEffect(() => {
     const fecthData = async () => {
@@ -94,6 +95,8 @@ function App() {
         token={userToken}
         setUser={setUser}
         setTitle={setTitle}
+        location={location}
+        setLocation={setLocation}
       />
       <Switch>
         <Route path="/user/favorites">

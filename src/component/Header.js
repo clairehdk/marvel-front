@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
-  let location = useLocation();
   useEffect(() => {
-    console.log("hello");
-  }, [location]);
+    setTitle("");
+  }, []);
+  let location = useLocation();
   return (
     <header>
       <div className="container">
