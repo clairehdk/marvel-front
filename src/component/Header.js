@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
   let location = useLocation();
   useEffect(() => {
-    setTitle("");
+    console.log("hello");
   }, [location]);
   return (
     <header>
