@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
@@ -7,9 +6,10 @@ import Loader from "./Loader";
 const Comic = ({ comic, userToken, favorites }) => {
   const [isFav, setIsFav] = useState(false);
 
-  let isAlreadyFavorite = favorites
-    ? favorites.filter((fav) => fav.marvelId === comic._id)
-    : [];
+  let isAlreadyFavorite =
+    favorites && favorites.length > 0
+      ? favorites.filter((fav) => fav.marvelId === comic._id)
+      : [];
 
   useEffect(() => {
     if (isAlreadyFavorite && isAlreadyFavorite.length === 0) {

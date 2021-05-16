@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Pagination = ({ count, limit, skip, setSkip, page, setPage }) => {
   const numOfPage = Math.ceil(count / limit);
   const nextPage = async () => {
