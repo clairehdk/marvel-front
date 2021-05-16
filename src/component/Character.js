@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
 const Character = ({ character, userToken }) => {
-  const [isFav, setFav] = useState(false);
   const [isLoading, setLoader] = useState(true);
+  const [isFav, setIsFav] = useState(false);
 
-  const handleFav = async (event) => {
+  const addFav = async (event) => {
     try {
       event.preventDefault();
       const data = {
@@ -26,6 +26,7 @@ const Character = ({ character, userToken }) => {
       });
       console.log(response.data);
       setLoader(false);
+      setIsFav(true);
     } catch (error) {
       console.log(error.message);
     }
@@ -45,8 +46,15 @@ const Character = ({ character, userToken }) => {
       </Link>
       <div>
         <h2>{character.name}</h2>
-        {/* <p>{character.description}</p> */}
-        <button onClick={handleFav}>Ajouter au favoris</button>
+        {userToken && (
+          <button onClick={addFav}>
+            {isFav ? (
+              <i className="fas fa-star"></i>
+            ) : (
+              <i className="far fa-star"></i>
+            )}
+          </button>
+        )}
       </div>
     </div>
   );

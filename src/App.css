@@ -3,9 +3,15 @@
 * {
   box-sizing: border-box;
 }
+#root {
+  height: 100%;
+}
 body {
   font-family: "Marvel";
   background-color: rgb(36, 36, 36);
+  /* position: relative;
+  min-height: 100%;
+  padding-bottom: 5em; */
 }
 .container {
   width: 1340px;
@@ -127,7 +133,7 @@ input {
 
 .form {
   display: flex;
-  height: 70vh;
+  height: 78vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -195,13 +201,12 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
   flex-direction: column;
 }
 .home_page > div {
   text-align: center;
   width: 100%;
-  margin-top: 70px;
+  margin-top: 40px;
   color: whitesmoke;
   font-size: 1.3em;
 }
@@ -242,6 +247,7 @@ input {
 } */
 .home_page > div:not(:last-child) {
   margin-right: 20px;
+  height: 64vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -258,23 +264,28 @@ input {
   flex-wrap: wrap;
 }
 .comics .item {
-  background-color: red;
   border-radius: 5px;
-  height: 365px;
+  height: 356px;
   display: flex;
   flex-direction: column;
-  width: calc((100% / 6) - 15px);
+  width: calc((100% / 5) - 15px);
   margin-bottom: 15px;
   margin-right: 18px;
   opacity: 0.8;
   overflow: hidden;
+  box-shadow: 10px 5px 5px black;
+  background-color: black;
 }
 
 .comics .item:hover {
   opacity: 1;
 }
+.item > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .item .cadre {
-  background-color: red;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -297,12 +308,13 @@ input {
   transform: scale(1.2);
   transition: all 0.2s linear;
 }
-.comics .item:nth-child(6n) {
+.comics .item:nth-child(5n) {
   margin: 0;
 }
 .item h2 {
   font-size: 18px;
   font-weight: 700;
+  width: 160px;
 }
 .item p {
   text-overflow: ellipsis;
@@ -328,4 +340,144 @@ input {
   color: red;
   background-color: #242424;
   font-size: 18px;
+}
+
+/* FAVORITES  */
+.favorites {
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+  width: 90%;
+  margin: 0 auto;
+}
+.favs {
+  height: 78vh;
+}
+.favs h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 150px;
+  font-size: 1.7em;
+}
+.favorites > div {
+  width: calc(100% / 5);
+}
+.favorites > div:not(:last-child) {
+  margin-right: 10px;
+}
+.favorites > div img {
+  width: 250px;
+  height: 300px;
+  border-radius: 5px;
+}
+.favorite {
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2em;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-right: 18px;
+}
+.favorite > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px;
+}
+.favorite > div button {
+  background-color: black;
+  color: red;
+}
+
+/* CHARACTER DETAILS */
+.chardetails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  line-height: 25px;
+}
+.chardetails button {
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+.chardetails img {
+  height: 300px;
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 10px 5px 5px black;
+}
+
+.chardetails h2 {
+  color: white;
+  background-color: red;
+  font-size: 1.8em;
+  font-weight: 700;
+  width: 200px;
+  padding: 11px;
+}
+.perso {
+  margin-top: 10px;
+  display: flex;
+  width: 90%;
+  /* background-color: black; */
+  color: white;
+  /* justify-content: center; */
+  align-items: flex-start;
+  margin: 20px 70px;
+  border-radius: 5px;
+}
+.perso img {
+  margin-right: 10px;
+}
+.perso h1 {
+  font-size: 1.8em;
+}
+.perso p {
+  font-size: 1.2em;
+  margin-top: 18px;
+}
+.comics_link {
+  color: white;
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  overflow-x: scroll;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+.comic_link {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 20%;
+}
+.comics_link img {
+  width: 200px;
+  height: 300px;
+}
+.comic_link h3 {
+  padding: 10px;
+  text-align: center;
+}
+
+/* FOOTER  */
+
+footer {
+  margin-top: 20px;
+  background-color: black;
+  /* position: absolute; */
+  bottom: 0;
+  color: rgb(173, 173, 173);
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
 }

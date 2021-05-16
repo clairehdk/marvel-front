@@ -1,5 +1,6 @@
 import "./App.css";
 import Cookies from "js-cookie";
+import axios from "axios";
 // Import des hooks
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
@@ -12,6 +13,8 @@ import CharDetails from "./container/CharDetails";
 import SignUp from "./container/SignUp";
 import Login from "./container/Login";
 import Favorites from "./container/Favorites";
+import Footer from "./component/Footer";
+import ComDetail from "./container/ComDetail";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
@@ -23,6 +26,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [viewPass, setViewPass] = useState(false);
+  // const [, set] = useState(false);
 
   const setUser = (token, userId) => {
     if (token) {
@@ -90,6 +94,9 @@ function App() {
         <Route path="/comics/:characterId">
           <CharDetails />
         </Route>
+        <Route path="/comic/:comicId">
+          <ComDetail />
+        </Route>
         <Route path="/comics">
           <Comics
             handleSearchBar={handleSearchBar}
@@ -100,6 +107,7 @@ function App() {
             setSkip={setSkip}
             page={page}
             setPage={setPage}
+            userToken={userToken}
           />
         </Route>
         <Route path="/characters">
@@ -113,12 +121,16 @@ function App() {
             page={page}
             setPage={setPage}
             userToken={userToken}
+            userId={userId}
           />
         </Route>
         <Route path="/">
           <Home setTitle={setTitle} token={userToken} />
         </Route>
       </Switch>
+      <Route>
+        <Footer />
+      </Route>
     </Router>
   );
 }

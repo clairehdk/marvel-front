@@ -6,14 +6,14 @@ import Loader from "../component/Loader";
 
 const CharDetails = () => {
   const [data, setData] = useState({});
-  const { characterId } = useParams();
+  const { comicId } = useParams();
   const [isLoading, setLoader] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/comics/${characterId}`
+          `http://localhost:3001/comic/${comicId}`
         );
         console.log(response.data);
         setData(response.data);
@@ -23,41 +23,26 @@ const CharDetails = () => {
       }
     };
     fetchData();
-  }, [characterId]);
+  }, [comicId]);
   return isLoading ? (
     <Loader />
   ) : (
     <div className="chardetails">
-      <Link to="/characters">
+      <Link to="/comics">
         <button>Retour</button>
       </Link>
-      <h2>LE PERSONNAGE</h2>
+      <h2>LE COMIC BOOK</h2>
       <div className="perso">
         <div>
           <img
             src={`${data.thumbnail.path}.${data.thumbnail.extension}`}
-            alt={data.name}
+            alt={data.title}
           />
         </div>
         <div>
-          <h1>{data.name}</h1>
+          <h1>{data.title}</h1>
           <p>{data.description}</p>
         </div>
-      </div>
-      <h2>COMICS LIÉS</h2>
-      <div className="comics_link">
-        {data.comics.map((detail) => {
-          return (
-            <div key={detail._id} className="comic_link">
-              <img
-                src={`${detail.thumbnail.path}.${detail.thumbnail.extension}`}
-                alt={detail.title}
-              ></img>
-              <h3>{detail.title}</h3>
-              {/* <span>{detail.description}</span> */}
-            </div>
-          );
-        })}
       </div>
     </div>
   );

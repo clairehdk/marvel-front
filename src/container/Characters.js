@@ -14,6 +14,8 @@ const Characters = ({
   page,
   setPage,
   userToken,
+  isFav,
+  userId,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
@@ -32,6 +34,7 @@ const Characters = ({
     };
     fetchData();
   }, [name, skip, limit]);
+
   return isLoading ? (
     <Loader />
   ) : (
@@ -54,6 +57,8 @@ const Characters = ({
               key={character._id}
               character={character}
               userToken={userToken}
+              isFav={isFav}
+              userId={userId}
             />
           );
         })}

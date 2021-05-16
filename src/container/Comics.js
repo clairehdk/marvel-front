@@ -6,7 +6,16 @@ import Limit from "../component/Limit";
 import Loader from "../component/Loader";
 import Pagination from "../component/Pagination";
 
-const Comics = ({ title, skip, limit, setLimit, setSkip, page, setPage }) => {
+const Comics = ({
+  title,
+  skip,
+  limit,
+  setLimit,
+  setSkip,
+  page,
+  setPage,
+  userToken,
+}) => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
   useEffect(() => {
@@ -41,7 +50,7 @@ const Comics = ({ title, skip, limit, setLimit, setSkip, page, setPage }) => {
       </div>
       <div className="comics">
         {data.results.map((comic) => {
-          return <Comic key={comic._id} comic={comic} />;
+          return <Comic key={comic._id} comic={comic} userToken={userToken} />;
         })}
       </div>
     </div>
