@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../component/Loader";
 
-const CharDetails = () => {
+const ComDetail = () => {
   const [data, setData] = useState({});
   const { comicId } = useParams();
   const [isLoading, setLoader] = useState(true);
@@ -47,4 +47,4 @@ const CharDetails = () => {
   );
 };
 
-export default CharDetails;
+export default ComDetail;

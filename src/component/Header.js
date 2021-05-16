@@ -3,16 +3,17 @@ import logo from "../assets/img/logo.png";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
-  const usePageViews = () => {
-    let location = useLocation();
-    useEffect(() => {
-      console.log("Hello");
-    }, [location]);
-  };
+  // const usePageViews = () => {
+  //   let location = useLocation();
+  //   useEffect(() => {
+  //     console.log("Hello");
+  //   }, [location]);
+  // };
   // let location = useLocation();
   // useEffect(() => {
   //   console.log("Hello");
   // }, []);
+  // usePageViews();
   return (
     <header>
       <div className="container">

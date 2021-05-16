@@ -12,11 +12,6 @@ const Character = ({ character, userToken, favorites }) => {
       : [];
 
   useEffect(() => {
-    if (favorites) {
-      isAlreadyFavorite = favorites.filter(
-        (fav) => fav.marvelId === character._id
-      );
-    }
     if (isAlreadyFavorite && isAlreadyFavorite.length === 0) {
       setIsFav(false);
     } else {
