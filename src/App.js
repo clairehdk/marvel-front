@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 // Import des hooks
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Import des composants / containers
 import Home from "./container/Home";
 import Comics from "./container/Comics";

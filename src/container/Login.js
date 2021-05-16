@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 
 const Login = ({
   setError,
@@ -11,7 +11,7 @@ const Login = ({
 }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  //   let history = useHistory();
+  let history = useHistory();
 
   const handleSubmit = async (event) => {
     try {
@@ -28,7 +28,7 @@ const Login = ({
       const token = response.data.token;
       const userId = response.data._id;
       setUser(token, userId);
-      //   history.push("/");
+      history.push("/");
     } catch (e) {
       setError(e);
     }
