@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import logo from "../assets/img/logo.png";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
   let location = useLocation();
