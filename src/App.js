@@ -44,7 +44,6 @@ function App() {
         );
         setFavorites(response.data);
         setLoader(false);
-        console.log(response.data);
       } catch (e) {
         console.log(e);
       }

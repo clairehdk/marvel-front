@@ -44,7 +44,7 @@ const Comic = ({ comic, userToken, favorites }) => {
         console.log(response.data);
         setIsFav(true);
       } else {
-        console.dir("ERROR", "Already in database");
+        alert("Favoris déjà enregistré !");
       }
     } catch (error) {
       console.log(error.message);
