@@ -8,10 +8,21 @@ const Comic = ({ comic, userToken, favorites }) => {
   const [isLoading, setLoader] = useState(true);
   const [isFav, setIsFav] = useState(false);
 
+  let isAlreadyFavorite = favorites.filter((fav) => fav.marvelId === comic._id);
+  console.log(isAlreadyFavorite.length);
+
+  useEffect(() => {
+    if (isAlreadyFavorite && isAlreadyFavorite.length === 0) {
+      setIsFav(false);
+    } else {
+      setIsFav(true);
+    }
+  }, []);
+
   const addFav = async (event) => {
+    event.preventDefault();
     try {
-      if (favorites.marvelId !== comic._id) {
-        event.preventDefault();
+      if (isAlreadyFavorite && isAlreadyFavorite.length === 0 && !isFav) {
         const data = {
           marvelId: comic._id,
           title: comic.title,
@@ -20,8 +31,9 @@ const Comic = ({ comic, userToken, favorites }) => {
             extension: comic.thumbnail.extension,
           },
         };
+
         const response = await axios.post(
-          `http://localhost:3001/fav/add`,
+          `https://my-marvel-backend.herokuapp.com/fav/add`,
           data,
           {
             headers: {
@@ -32,9 +44,8 @@ const Comic = ({ comic, userToken, favorites }) => {
         console.log(response.data);
         setLoader(false);
         setIsFav(true);
-        // setIsFavPresent = !!fav[data._id];
       } else {
-        console.log("Fav déjà présent en BDD");
+        console.dir("ERROR", "Already in database");
       }
     } catch (error) {
       console.log(error.message);

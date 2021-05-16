@@ -283,7 +283,7 @@ input {
 .item > div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 .item .cadre {
   overflow: hidden;
@@ -478,7 +478,6 @@ input {
 footer {
   margin-top: 20px;
   background-color: black;
-  /* position: absolute; */
   bottom: 0;
   color: rgb(173, 173, 173);
   width: 100%;

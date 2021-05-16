@@ -20,7 +20,10 @@ const Login = ({
         email: email,
         password: password,
       };
-      const response = await axios.post("http://localhost:3001/login", data);
+      const response = await axios.post(
+        "https://my-marvel-backend.herokuapp.com/login",
+        data
+      );
       console.log(response.data);
       const token = response.data.token;
       const userId = response.data._id;

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import MultiCarouselPage from "../component/MultiCarrousel";
 import CardFav from "../component/CardFav";
 import Loader from "../component/Loader";
 
@@ -14,7 +13,7 @@ const Favorites = ({ userId, userToken }) => {
       try {
         const data = { userId };
         const response = await axios.post(
-          "http://localhost:3001/user/favs",
+          "https://my-marvel-backend.herokuapp.com/user/favs",
           data,
           {
             headers: {
@@ -40,7 +39,14 @@ const Favorites = ({ userId, userToken }) => {
         <h1>Mes favoris</h1>
         <div className="favorites">
           {data.map((fav) => {
-            return <CardFav fav={fav} userId={userId} userToken={userToken} />;
+            return (
+              <CardFav
+                key={fav._id}
+                fav={fav}
+                userId={userId}
+                userToken={userToken}
+              />
+            );
           })}
         </div>
       </div>

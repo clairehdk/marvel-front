@@ -36,7 +36,7 @@ function App() {
       try {
         const data = { userId };
         const response = await axios.post(
-          "http://localhost:3001/user/favs",
+          "https://my-marvel-backend.herokuapp.com/user/favs",
           data,
           {
             headers: {
@@ -93,6 +93,7 @@ function App() {
         title={title}
         token={userToken}
         setUser={setUser}
+        setTitle={setTitle}
       />
       <Switch>
         <Route path="/user/favorites">

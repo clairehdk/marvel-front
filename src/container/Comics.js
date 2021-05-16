@@ -23,7 +23,7 @@ const Comics = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/comics?title=${title}&limit=${limit}&skip=${skip}`
+          `https://my-marvel-backend.herokuapp.com/comics?title=${title}&limit=${limit}&skip=${skip}`
         );
         console.log(response.data);
         setData(response.data);

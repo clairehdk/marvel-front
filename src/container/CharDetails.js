@@ -13,7 +13,7 @@ const CharDetails = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/comics/${characterId}`
+          `https://my-marvel-backend.herokuapp.com/comics/${characterId}`
         );
         console.log(response.data);
         setData(response.data);

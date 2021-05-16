@@ -22,7 +22,10 @@ const SignUp = ({
         email,
         password,
       };
-      const response = await axios.post("http://localhost:3001/signup", data);
+      const response = await axios.post(
+        "https://my-marvel-backend.herokuapp.com/signup",
+        data
+      );
       console.log(response);
       const token = response.data.token;
       const userId = response.data._id;

@@ -16,6 +16,7 @@ const Characters = ({
   userToken,
   isFav,
   userId,
+  favorites,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setLoader] = useState(true);
@@ -23,7 +24,7 @@ const Characters = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/characters?name=${name}&skip=${skip}&limit=${limit}`
+          `https://my-marvel-backend.herokuapp.com/characters?name=${name}&skip=${skip}&limit=${limit}`
         );
         console.log(response.data);
         setData(response.data);
@@ -59,6 +60,7 @@ const Characters = ({
               userToken={userToken}
               isFav={isFav}
               userId={userId}
+              favorites={favorites}
             />
           );
         })}

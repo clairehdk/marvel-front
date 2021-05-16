@@ -4,29 +4,51 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
-const Character = ({ character, userToken }) => {
+const Character = ({ character, userToken, favorites }) => {
   const [isLoading, setLoader] = useState(true);
   const [isFav, setIsFav] = useState(false);
+  let isAlreadyFavorite = [];
+
+  useEffect(() => {
+    if (favorites) {
+      isAlreadyFavorite = favorites.filter(
+        (fav) => fav.marvelId === character._id
+      );
+    }
+    if (isAlreadyFavorite && isAlreadyFavorite.length === 0) {
+      setIsFav(false);
+    } else {
+      setIsFav(true);
+    }
+  }, []);
 
   const addFav = async (event) => {
+    event.preventDefault();
     try {
-      event.preventDefault();
-      const data = {
-        marvelId: character._id,
-        title: character.name,
-        thumbnail: {
-          path: character.thumbnail.path,
-          extension: character.thumbnail.extension,
-        },
-      };
-      const response = await axios.post(`http://localhost:3001/fav/add`, data, {
-        headers: {
-          authorization: `Bearer ${userToken}`,
-        },
-      });
-      console.log(response.data);
-      setLoader(false);
-      setIsFav(true);
+      if (isAlreadyFavorite && isAlreadyFavorite.length === 0 && !isFav) {
+        const data = {
+          marvelId: character._id,
+          title: character.name,
+          thumbnail: {
+            path: character.thumbnail.path,
+            extension: character.thumbnail.extension,
+          },
+        };
+        const response = await axios.post(
+          `https://my-marvel-backend.herokuapp.com/fav/add`,
+          data,
+          {
+            headers: {
+              authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setLoader(false);
+        setIsFav(true);
+      } else {
+        console.dir("ERROR", "Already in database");
+      }
     } catch (error) {
       console.log(error.message);
     }

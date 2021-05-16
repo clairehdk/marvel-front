@@ -5,7 +5,7 @@ const CardFav = ({ fav, userToken, userId }) => {
     try {
       const data = { userId, id: fav._id };
       const response = await axios.post(
-        `http://localhost:3001/fav/remove`,
+        `https://my-marvel-backend.herokuapp.com/fav/remove`,
         data,
         {
           headers: {
@@ -28,7 +28,7 @@ const CardFav = ({ fav, userToken, userId }) => {
       <div>
         <p>{fav.title}</p>
         <button onClick={removeFav}>
-          <i class="fas fa-star"></i>
+          <i className="fas fa-star"></i>
         </button>
       </div>
     </div>
