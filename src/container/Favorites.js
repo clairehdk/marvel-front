@@ -5,7 +5,6 @@ import CardFav from "../component/CardFav";
 import Loader from "../component/Loader";
 
 const Favorites = ({ userId, userToken }) => {
-  let history = useHistory();
   const [isLoading, setLoader] = useState(true);
   const [data, setData] = useState({});
   useEffect(() => {
@@ -30,7 +29,7 @@ const Favorites = ({ userId, userToken }) => {
     };
     fecthData();
   }, []);
-
+  let history = useHistory();
   return userToken ? (
     isLoading ? (
       <Loader />

@@ -9,10 +9,10 @@ const SignUp = ({
   handleViewPass,
   viewPass,
 }) => {
-  let history = useHistory();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUserName] = useState("");
+  let history = useHistory();
 
   const handleSubmit = async (event) => {
     try {

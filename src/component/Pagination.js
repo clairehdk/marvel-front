@@ -2,11 +2,7 @@ import { useState } from "react";
 
 const Pagination = ({ count, limit, skip, setSkip, page, setPage }) => {
   const numOfPage = Math.ceil(count / limit);
-  console.log(page);
-
   const nextPage = async () => {
-    // Page * limite - limite
-
     if (page >= 0) {
       if (count > limit) {
         await setPage(page + 1);
@@ -21,12 +17,12 @@ const Pagination = ({ count, limit, skip, setSkip, page, setPage }) => {
     }
   };
 
-  const goToPage = async () => {
-    if (page && page >= 0) {
-      setPage(page);
-      setSkip(page * limit - limit);
-    }
-  };
+  // const goToPage = async () => {
+  //   if (page && page >= 0) {
+  //     setPage(page);
+  //     setSkip(page * limit - limit);
+  //   }
+  // };
 
   return (
     <div className="pages">

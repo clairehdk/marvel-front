@@ -9,9 +9,9 @@ const Login = ({
   handleViewPass,
   viewPass,
 }) => {
-  let history = useHistory();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  let history = useHistory();
 
   const handleSubmit = async (event) => {
     try {

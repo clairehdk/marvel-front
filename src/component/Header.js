@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
-
 import { useLocation } from "react-router-dom";
 
 const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
   let location = useLocation();
-  console.log(location.pathname);
   useEffect(() => {
     setTitle("");
   }, [location]);
@@ -38,7 +36,7 @@ const Header = ({ handleSearch, title, token, setUser, setTitle }) => {
 
         {token ? (
           <div>
-            <Link to="user/favorites">
+            <Link to="/user/favorites">
               <button>Mes favoris</button>
             </Link>
 
